@@ -129,52 +129,101 @@
 
 <!-- EXECRICE 6 -->
 
-<?php
-    // Vérifier si des données ont été transmises via POST ou GET
-    if (!empty($_POST) || !empty($_GET)) {
-        // Récupérer les données en fonction de la méthode utilisée
-        $method = !empty($_POST) ? $_POST : $_GET;
-        $civilite = htmlspecialchars($method['civilite'] ?? '');
-        $nom = htmlspecialchars($method['nom'] ?? '');
-        $prenom = htmlspecialchars($method['prenom'] ?? '');
-        $fichier = htmlspecialchars($method['fichier'] ?? '');
-        $extensionFichier = $infoFichier($method['extension'] ?? ''); 
-        // Afficher les données transmises
-        echo "<h1>Informations reçues :</h1>";
-        echo "<p><strong>Civilité :</strong> $civilite</p>";
-        echo "<p><strong>Nom :</strong> $nom</p>";
-        echo "<p><strong>Prénom :</strong> $prenom</p>";
-        echo "<p><strong>Fichier :</strong> $fichier</p>";
-        echo "<p><strong>Fichier :</strong> $extensionFichier</p>";
-    } else {
-        // Si aucune donnée n'est transmise, afficher le formulaire
-        ?>
-        <h1>Formulaire Civilité</h1>
-        <form action="index.php" method="POST">
-            <label for="civilite">Civilité :</label>
-            <select id="civilite" name="civilite" required>
-                <option value="Mr">Mr</option>
-                <option value="Mme">Mme</option>
-            </select>
-            <br><br>
-
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
-            <br><br>
-
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required>
-            <br><br>
-
-            <label for="fichier">Choisissez un fichier :</label>
-        <input type="file" id="fichier" name="fichier" accept="image/*" required>
-        <br><br>
-
-            <button type="submit">Envoyer</button>
-        </form>
-        <?php
-    }
+<!-- <?php
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
+//     // Afficher les données transmises
+//     echo "<p>Civilité : " . htmlspecialchars($_POST['civilite'] ?? $_GET['civilite'] ?? '') . "</p>";
+//     echo "<p>Nom : " . htmlspecialchars($_POST['nom'] ?? $_GET['nom'] ?? '') . "</p>";
+//     echo "<p>Prénom : " . htmlspecialchars($_POST['prenom'] ?? $_GET['prenom'] ?? '') . "</p>";
+// } else {
+    // Afficher le formulaire
     ?>
+    <form action="index.php" method="post">
+        <label for="civilite">Civilité :</label>
+        <select name="civilite" id="civilite">
+            <option value="Mr">Mr</option>
+            <option value="Mme">Mme</option>
+        </select><br><br>
+        <label for="nom">Nom :</label>
+        <input type="text" name="nom" id="nom" required><br><br>
+        <label for="prenom">Prénom :</label>
+        <input type="text" name="prenom" id="prenom" required><br><br>
+        <button type="submit">Envoyer</button>
+    </form>
+    <?php
+// }
+?> -->
+
+<!-- EXECRICE 7 -->
+
+<?php
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
+//     // Afficher les données et informations sur le fichier
+//     echo "<p>Civilité : " . htmlspecialchars($_POST['civilite']) . "</p>";
+//     echo "<p>Nom : " . htmlspecialchars($_POST['nom']) . "</p>";
+//     echo "<p>Prénom : " . htmlspecialchars($_POST['prenom']) . "</p>";
+//     echo "<p>Nom du fichier : " . htmlspecialchars($_FILES['fichier']['name']) . "</p>";
+//     echo "<p>Extension : " . pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION) . "</p>";
+// } else {
+    // Afficher le formulaire
+    ?>
+    <!-- <form action="index.php" method="post" enctype="multipart/form-data">
+        <label for="civilite">Civilité :</label>
+        <select name="civilite" id="civilite">
+            <option value="Mr">Mr</option>
+            <option value="Mme">Mme</option>
+        </select><br><br>
+        <label for="nom">Nom :</label>
+        <input type="text" name="nom" id="nom" required><br><br>
+        <label for="prenom">Prénom :</label>
+        <input type="text" name="prenom" id="prenom" required><br><br>
+        <label for="fichier">Fichier :</label>
+        <input type="file" name="fichier" id="fichier" required><br><br>
+        <button type="submit">Envoyer</button>
+    </form> -->
+    <?php
+// }
+?>
+
+
+<!-- EXECRICE 8 -->
+
+
+<?php
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
+//     $extension = strtolower(pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION));
+//     var_dump($extension);
+//     if ($extension === 'pdf' || $extension === 'png' || $extension === 'jpg') {
+//         // Afficher les données et le fichier
+//         echo "<p>Civilité : " . htmlspecialchars($_POST['civilite']) . "</p>";
+//         echo "<p>Nom : " . htmlspecialchars($_POST['nom']) . "</p>";
+//         echo "<p>Prénom : " . htmlspecialchars($_POST['prenom']) . "</p>";
+//         echo "<p>Nom du fichier : " . htmlspecialchars($_FILES['fichier']['name']) . "</p>";
+//         echo "<p>Extension : " . htmlspecialchars($extension) . "</p>";
+//     } else {
+//         echo "<p>Le fichier envoyé n'est pas un PDF.</p>";
+//     }
+// } else{ 
+    // Afficher le formulaire
+    ?>
+    <!-- <form action="index.php" method="post" enctype="multipart/form-data">
+        <label for="civilite">Civilité :</label>
+        <select name="civilite" id="civilite">
+            <option value="Mr">Mr</option>
+            <option value="Mme">Mme</option>
+        </select><br><br>
+        <label for="nom">Nom :</label>
+        <input type="text" name="nom" id="nom" required><br><br>
+        <label for="prenom">Prénom :</label>
+        <input type="text" name="prenom" id="prenom" required><br><br>
+        <label for="fichier">Fichier :</label>
+        <input type="file" name="fichier" id="fichier" accept=".pdf, .png, .jpg"  required><br><br>
+        <button type="submit">Envoyer</button>
+    </form> -->
+    <?php
+// }
+?>
+
 
 </body>
 </html>
